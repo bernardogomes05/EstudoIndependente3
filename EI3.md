@@ -76,10 +76,113 @@ git reset HEAD {nome do arquivo}: retorna o arquivo que está na fila staged par
 
 # GitHub
 
+# Chave SSH
+
     Para subir um arquivo no repositório remoto é necessario gerar e adicionar uma chave SSH 
 
 1. Para gerar a chave SSH usa-se esse comando no terminal   
         ssh-keygen -t rsa -b 4096 -C "{seu email cadastrado no GitHub}"
 2. Ao gerar a chave acesse o diretório contendo id_rsa.pub, ao acessar entre no GitHub
 3. Va nas configurações de acesso e procure SSH and GPG keys.
-4. Clique adicionar nova chave SSH, de um titulo e copie a chave no campo indicado.  
+4. Clique adicionar nova chave SSH, de um titulo e copie a chave no campo indicado. 
+
+# Ligação repositório local e remoto
+
+    obs: Para ligar um repositório local a um remoto é necessário alguns comandos.
+
+Se o repositório local ainda não foi criado é necessário usar os comandos asseguir
+
+    git init 
+    git add {nome do arquivo e tipo de extenção}
+    git commit -m "alguma mensagem para o primeiro commit"
+    git remote add origin {URL do repositório}
+    git push -u origin master
+
+Se o repositório local já foi criado é só usar esse dois comandos
+
+    git remote add origin {URL do repositório}
+    git push -u origin master
+
+# Atualizar repositório remoto
+
+Para atualizar um repositório remoto é necessário confirmar um commit no repositório local e em seguida usar o comando 
+
+    git push origin master
+
+# Clonar repositórios remotos
+
+Para clona/copiar um repositório remoto usa-se o comando 
+
+    git clone {URL do repositório + um nome para a cópia}
+
+# FORK 
+
+O QUE É: fork permite pegar outros repositórios remotos que não são seus e fazer contribuições. 
+EX: vi que album repositório tem um erro e eu desejo arrumar-lo, para criar um FORK é necesário acessar esse repositório e clicar na opção de FORK no canto superior direito.
+
+FORK e CLONE são diferentes porque o clone só é possivel fazer copias para voçe, já o FORK é possivel editar os arquivos de outra pessoa e atualiza-los.
+
+# BRANCH 
+
+O QUE É: branch é como se fosse um ponteiro móvel que mostra em qual commit voçe está. Ao criar um repositório voçe vai estar no branch master, que é o branch inicial. 
+Também é possivel criar novos branches e apontar para o mesmo repositório em que se encontra ou outros repositórios.
+
+# Usos dos branches
+
+VANTAGENS 
+
+- Poder modificar sem alterar o local principal(master), ou seja, é possivel corrigir um bug enquanto tem outras pessoas trabalhando no branch principal.
+
+- Facilmente "desligavel", ou seja, é possivel criar e apagar branches facilmente.
+
+- Multiplas pessoas trabalhando, ou seja, várias pessoas podem estar trabalhando em diversos outros branches sem atrapalhar uns aos outros.
+
+- Evita conflitos. 
+
+# Criar um branch 
+
+    git checkout -b {nome do branch}
+
+git branch: mostra quais os branches existentes e em qual voçe está localizado
+    checkout -b: específica que está sendo criado um branch
+    checkout {nome do branch}: voçe vai ir para o branch especificado.
+    branch -D {nome do branch}: deleta um branch
+
+# Unir branches - MERGE ou REBASE
+
+MERGE 
+
+Mais complexo
+
+Cria um commit extra para juntar com o branch master 
+
+PROS 
+
+- Operação não destrutiva, ele apenas cria um novo commit para depois juntar todos. 
+
+
+CONTRAS
+
+- Commit extra, commit que não adiciona nada novo, apenas junta outros commits.
+
+- Histórico poluído.
+
+REBASE 
+
+Entendimento mais simples
+
+Coloca todas as mudanças feitas para frente da linha (fast forward).
+
+PROS
+
+- Evita commits extras 
+
+- Histórico se mantém linear 
+
+CONTRAS 
+
+- Perde ordem cronológica, ou seja, se há duas pessoas trabalhando no mesmo branch, se eu mudar o histórico (confirmar um commit) não será possivel da outra pessoa aplicar as mudanças dela.
+
+
+
+
