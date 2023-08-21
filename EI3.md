@@ -150,7 +150,7 @@ git branch: mostra quais os branches existentes e em qual voçe está localizado
 
 # Unir branches - MERGE ou REBASE
 
-MERGE 
+# MERGE 
 
 Mais complexo
 
@@ -167,7 +167,11 @@ CONTRAS
 
 - Histórico poluído.
 
-REBASE 
+Para fazer um merge é necessário criar uma branch extra, fazer as alterações desejadas, volta ao branch master e usar o comando.
+
+    git merge {nome da branch extra}
+
+# REBASE 
 
 Entendimento mais simples
 
@@ -183,6 +187,58 @@ CONTRAS
 
 - Perde ordem cronológica, ou seja, se há duas pessoas trabalhando no mesmo branch, se eu mudar o histórico (confirmar um commit) não será possivel da outra pessoa aplicar as mudanças dela.
 
+Para fazer um merge é necessário criar uma branch extra, fazer as alterações desejadas, volta ao branch master e usar o comando.
+
+    git rebase {nome da branch extra}
+
+
+OBS: é mais aconselhavel fazer uso do rebase ao inves de merge, pois fica mais organizado os logs. 
+Usa-se merge quando for adicionar alguma nova feature, ou quando for necessáro ver de quando veio aquele branch. 
+
+# .GIT IGNORE
+
+Serve para ignorar ou não localizar algum tipo de arquivo. EX: Diretório possui alguns arquivos que contenham senhas e essas não podem ir ao público, mas são necessários dentro do ambiente. Com o gitignore esses arquivos não serão upados no repositório.
+
+# GIT STASH
+
+Serve para guardar modificações que ainda não foram commitadas em um arquivo, para chamar novamente quando for necessário. 
+
+    COMANDOS 
+   
+    git stash: cria um stash
+        stash apply: aplica as mudanças
+              list: lista dos stashes em andamento
+              clear: limpa os stashes.
+
+# ALIAS
+
+Atalhos para comandos no GIT
+
+    COMANDOS 
+
+    git config --global alias.{atalho do comando} funcionalidade. EX: alias.s status
 
 
 
+# VERSIONAMENTOS COM TAGS
+
+    COMANDOS
+
+    git tag -a (simboliza alguma anotação) {versão} -m "{alguma mensagem}"
+    git push origin master --tags: sobe as tags
+    git tag: exibe todas as tags
+
+OBS: as tags aparecem dentro do repositório onde está escrito release.    
+
+# GIT REVERT
+
+Serve para reverter um commit, ou seja, retorna apenas o que foi feito sem retornar o commit.
+Não altera o histórico dos commits.
+
+
+# APAGAR TAGS E BRANCH NO REP REMOTO
+
+    COMANDOS 
+
+    git push origin :{versão da tag que deseja apagar}
+    git push origin :{nome do branch que desaja apagar}
